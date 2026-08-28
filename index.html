@@ -3,741 +3,1484 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MULAEARN GLOBAL – Premium Conversational Network</title>
+    <title>MULAEARN GLOBAL | Teach African Languages & Earn</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
-                    colors: {
-                        darkBg: '#030712',
-                        glassBg: 'rgba(17, 24, 39, 0.7)',
-                        glassBorder: 'rgba(99, 102, 241, 0.15)',
-                        accentGold: '#6366F1',
-                        accentYellow: '#A78BFA'
-                    }
-                }
-            }
-        }
-    </script>
-
     <style>
+        :root {
+            --bg-dark: #030712;
+            --card-bg: rgba(17, 24, 39, 0.75);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --primary-indigo: #6366f1;
+            --primary-violet: #8b5cf6;
+            --accent-emerald: #10b981;
+            --accent-glow: rgba(99, 102, 241, 0.25);
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --text-sub: #cbd5e1;
+            --font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            background-color: #030712;
-            color: #f3f4f6;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
         }
 
-        .glass-card {
-            background: rgba(17, 24, 39, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(99, 102, 241, 0.1);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-
-        .glass-card:hover {
-            border-color: rgba(99, 102, 241, 0.25);
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
-        }
-
-        .map-bg {
+        /* Ambient background glow */
+        body::before {
+            content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: radial-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 0);
-            background-size: 24px 24px;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1000px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.05) 50%, rgba(3, 7, 18, 0) 70%);
+            pointer-events: none;
             z-index: 0;
         }
 
-        @keyframes pulse-glow {
-            0%, 100% { transform: scale(1); opacity: 0.4; }
-            50% { transform: scale(1.3); opacity: 1; }
-        }
-        .node-pulse {
-            animation: pulse-glow 3s infinite ease-in-out;
-        }
-
-        @keyframes slide-in-out {
-            0% { transform: translateX(120%); opacity: 0; }
-            10% { transform: translateX(0); opacity: 1; }
-            90% { transform: translateX(0); opacity: 1; }
-            100% { transform: translateX(120%); opacity: 0; }
-        }
-        .notification-anim {
-            animation: slide-in-out 5s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .scroll-reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        /* HEADER */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(16px);
+            background: rgba(3, 7, 18, 0.85);
+            border-bottom: 1px solid var(--card-border);
+            padding: 16px 0;
         }
 
-        .dot-pulse span {
-            animation: dot-blink 1.4s infinite both;
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
         }
-        .dot-pulse span:nth-child(2) { animation-delay: .2s; }
-        .dot-pulse span:nth-child(3) { animation-delay: .4s; }
 
-        @keyframes dot-blink {
-            0% { opacity: .2; }
-            20% { opacity: 1; }
-            100% { opacity: .2; }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--primary-indigo), var(--primary-violet));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .location-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-sub);
+        }
+
+        .location-pill i {
+            color: var(--primary-indigo);
+        }
+
+        .btn-register-nav {
+            background: linear-gradient(135deg, var(--primary-indigo), var(--primary-violet));
+            color: #fff;
+            padding: 9px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 14px var(--accent-glow);
+        }
+
+        .btn-register-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 80px 0 50px 0;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #a5b4fc;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #a5b4fc, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            max-width: 680px;
+            margin: 0 auto 36px auto;
+            color: var(--text-sub);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .hero-ctas {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-indigo), var(--primary-violet));
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.2s;
+            box-shadow: 0 8px 24px var(--accent-glow);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-main);
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* LANGUAGE SELECTOR SECTION */
+        .section-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 36px;
+            margin: 40px 0;
+            backdrop-filter: blur(12px);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .section-sub {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .language-chips-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .lang-chip {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            user-select: none;
+        }
+
+        .lang-chip:hover {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
+        .lang-chip.selected {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: var(--primary-indigo);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .lang-chip .checkmark {
+            display: none;
+            color: var(--accent-emerald);
+        }
+
+        .lang-chip.selected .checkmark {
+            display: inline-block;
+        }
+
+        .selection-summary-box {
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .selected-list-text {
+            color: #e2e8f0;
+            font-size: 0.95rem;
+        }
+
+        .selected-list-text strong {
+            color: #a5b4fc;
+        }
+
+        .chip-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-sm-add {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--card-border);
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-sm-add:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* LEARNERS GRID SECTION */
+        .learners-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .rotation-badge {
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--accent-emerald);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .learner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            transition: opacity 0.4s ease;
+        }
+
+        .learner-grid.faded {
+            opacity: 0.2;
+        }
+
+        .learner-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            backdrop-filter: blur(12px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .learner-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+
+        .learner-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background-color: #1f2937;
+            flex-shrink: 0;
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .learner-meta h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .online-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent-emerald);
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+
+        .online-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-emerald);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-emerald);
+        }
+
+        .lesson-request-bar {
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin: 14px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .request-icon {
+            font-size: 1.3rem;
+            color: #a5b4fc;
+            flex-shrink: 0;
+        }
+
+        .request-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .request-lang-text {
+            font-size: 0.95rem;
+            color: #e0e7ff;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .payout-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            gap: 12px;
+        }
+
+        .payout-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .payout-sub {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+        }
+
+        .payout-val {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #38bdf8;
+            letter-spacing: -0.5px;
+        }
+
+        .btn-start-lesson {
+            background: linear-gradient(135deg, var(--primary-indigo), var(--primary-violet));
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-start-lesson:hover {
+            opacity: 0.95;
+            transform: scale(1.02);
+        }
+
+        .illustrative-note {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 16px;
+        }
+
+        /* TOAST NOTIFICATIONS (CENTERED & 2 LINES) */
+        .toast-container {
+            position: fixed;
+            bottom: 30px; 
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 9998;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 92%;
+            max-width: 380px;
+            pointer-events: none;
+            align-items: center;
+        }
+
+        .toast-card {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            backdrop-filter: blur(12px);
+            border-radius: 14px;
+            padding: 12px 16px;
+            color: #fff;
+            font-size: 0.88rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            width: 100%;
+            text-align: left;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .toast-icon {
+            color: var(--accent-emerald);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .toast-text-content {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.35;
+        }
+
+        /* STATS SECTION */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #a5b4fc;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        /* BLUEPRINT SECTION */
+        .blueprint-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: rgba(99, 102, 241, 0.2);
+            color: #a5b4fc;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+
+        .step-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .step-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* EXPLORE LANGUAGES GRID */
+        .explore-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .explore-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .explore-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .explore-flag {
+            font-size: 1.5rem;
+        }
+
+        .explore-name {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .explore-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .btn-teach-sm {
+            background: rgba(99, 102, 241, 0.15);
+            color: #a5b4fc;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .btn-teach-sm:hover {
+            background: var(--primary-indigo);
+            color: #fff;
+        }
+
+        /* WHY LEARN CARDS */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .why-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .why-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .why-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .why-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* TESTIMONIALS */
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .story-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 20px;
+            font-style: italic;
+            color: var(--text-sub);
+            font-size: 0.92rem;
+        }
+
+        .story-author {
+            margin-top: 14px;
+            font-style: normal;
+            font-weight: 700;
+            color: #a5b4fc;
+            font-size: 0.85rem;
+        }
+
+        /* FINAL CTA */
+        .final-cta {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 24px;
+            padding: 60px 20px;
+            margin: 60px 0;
+        }
+
+        .final-cta h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .final-cta p {
+            color: var(--text-sub);
+            max-width: 550px;
+            margin: 0 auto 28px auto;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--card-border);
+            padding: 40px 0 100px 0; 
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer-disclaimer {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            line-height: 1.6;
+            color: #64748b;
+        }
+
+        /* FLOATING BUTTONS (BOTTOM LEFT - STACKED) */
+        .floating-actions {
+            position: fixed;
+            bottom: 24px;
+            left: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 99999;
+        }
+
+        .wa-btn {
+            background: #25D366; 
+            color: #ffffff !important;
+            padding: 12px 22px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 18px rgba(37, 211, 102, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .wa-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(37, 211, 102, 0.7);
+        }
+
+        .support-btn {
+            background: #2AABEE; /* Telegram Blue */
+            color: #ffffff !important;
+            padding: 12px 22px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 18px rgba(42, 171, 238, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .support-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 22px rgba(42, 171, 238, 0.7);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.1rem;
+            }
+            .nav-wrapper {
+                flex-wrap: wrap;
+            }
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 10px;
+            }
+            .learner-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-box {
+                padding: 24px 16px;
+            }
+            .selection-summary-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .toast-container {
+                bottom: 24px;
+                width: 90%;
+            }
+            .floating-actions {
+                bottom: 16px;
+                left: 16px;
+            }
+            .wa-btn, .support-btn {
+                padding: 10px 16px;
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
-<body class="antialiased min-h-screen relative selection:bg-indigo-500 selection:text-white">
+<body>
 
-    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div class="map-bg"></div>
-        <div class="absolute top-1/4 left-1/4 w-3 h-3 bg-indigo-500 rounded-full node-pulse shadow-[0_0_15px_#6366f1]"></div>
-        <div class="absolute top-1/3 right-1/4 w-2 h-2 bg-violet-400 rounded-full node-pulse shadow-[0_0_12px_#a78bfa]" style="animation-delay: 1s;"></div>
-        <div class="absolute bottom-1/4 left-1/3 w-2.5 h-2.5 bg-indigo-400 rounded-full node-pulse shadow-[0_0_15px_#6366f1]" style="animation-delay: 1.5s;"></div>
-        <div class="absolute bottom-1/3 right-1/3 w-3 h-3 bg-violet-500 rounded-full node-pulse shadow-[0_0_20px_#a78bfa]" style="animation-delay: 0.5s;"></div>
-        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-gradient-to-br from-indigo-500/10 to-transparent blur-[120px]"></div>
-        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-gradient-to-tl from-violet-500/10 to-transparent blur-[120px]"></div>
-    </div>
-
-    <header class="sticky top-0 z-50 glass-card bg-opacity-80 border-b border-white/5 backdrop-blur-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="bg-gradient-to-tr from-indigo-500 to-violet-400 p-2.5 rounded-xl shadow-[0_0_15px_rgba(99,102,241,0.4)]">
-                    <i class="fa-solid fa-comments text-white text-xl"></i>
-                </div>
-                <div>
-                    <span class="text-xl font-black tracking-wider uppercase bg-gradient-to-r from-white via-indigo-400 to-violet-300 bg-clip-text text-transparent">mulaearn</span>
-                    <span class="text-xs font-bold block tracking-widest text-indigo-500/80 uppercase -mt-1">Global</span>
-                </div>
-            </div>
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <div class="logo-icon"><i class="fa-solid fa-earth-africa"></i></div>
+                <span>MULAEARN GLOBAL</span>
+            </a>
             
-            <div class="flex items-center space-x-4">
-                <div id="currency-pill" class="flex items-center space-x-2 bg-black/40 border border-white/10 px-3 py-1.5 rounded-full text-xs font-semibold text-gray-300">
-                    <i class="fa-solid fa-earth-africa text-indigo-500 animate-spin" style="animation-duration: 8s;"></i>
-                    <span id="detected-country">Detecting Location...</span>
+            <div class="header-right">
+                <div class="location-pill" id="location-pill">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span id="detected-country">Detecting location...</span>
+                    <span id="detected-currency" style="font-weight:700; color:#fff;">(...)</span>
                 </div>
-                <a href="https://mulaearn.com/register.php?ref=Aimo254" target="_blank" class="bg-gradient-to-r from-indigo-500 to-violet-400 hover:from-indigo-400 hover:to-violet-300 text-white font-bold text-sm px-5 py-2.5 rounded-xl shadow-[0_4px_15px_rgba(99,102,241,0.3)] transition-all duration-300 hover:scale-105">
-                    👉 Register Now
-                </a>
+                <a href="https://mulaearn.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-register-nav">Register Now</a>
             </div>
         </div>
     </header>
 
-    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-24 space-y-24">
-
-        <section class="text-center max-w-4xl mx-auto py-8 sm:py-12 space-y-6">
-            <div class="inline-flex items-center space-x-2 bg-indigo-500/10 border border-indigo-500/30 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider text-indigo-400 uppercase">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                <span>Premium Monetized Conversational Network</span>
+    <main class="container">
+        <section class="hero">
+            <div class="hero-badge">
+                <i class="fa-solid fa-graduation-cap"></i> GLOBAL AFRICAN LANGUAGE TEACHING NETWORK
             </div>
-            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-tight">
-                Turn Conversations Into Cash with <br>
-                <span class="bg-gradient-to-r from-indigo-400 via-violet-300 to-indigo-500 bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(99,102,241,0.2)]">mulaearn Global</span>
+            <h1 class="hero-title">
+                Teach Your African Language.<br>
+                <span class="gradient-text">Earn From Every Lesson.</span>
             </h1>
-            <p class="text-base sm:text-xl text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">
-                Connect with verified continental users waiting to chat with you. Earn constant dynamic rewards per response and cash out straight to your local mobile money, wallet, or bank account.
+            <p class="hero-subtitle">
+                Connect with international learners who want to learn African languages, culture and everyday expressions. Share your language skills, teach remotely and earn from eligible lessons.
             </p>
-            <div class="pt-4">
-                <a href="https://mulaearn.com/register.php?ref=Aimo254" target="_blank" class="inline-flex items-center space-x-3 bg-gradient-to-r from-indigo-500 via-violet-400 to-indigo-600 hover:from-indigo-400 hover:to-violet-300 text-white font-extrabold text-lg px-8 py-4 rounded-2xl shadow-[0_10px_25px_rgba(99,102,241,0.4)] transition-all duration-300 hover:scale-[1.03] group">
-                    <span>👉 Get Started & Register Now</span>
-                    <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+            <div class="hero-ctas">
+                <a href="https://mulaearn.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-primary">
+                    👉 Register as a Language Teacher
                 </a>
+                <a href="#explore-languages" class="btn-secondary">Explore Languages</a>
             </div>
         </section>
 
-        <section class="scroll-reveal space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/5 pb-4">
+        <section class="section-box" id="language-selector">
+            <div class="section-header">
+                <h2 class="section-title">What Language Can You Teach?</h2>
+                <p class="section-sub">
+                    Based on your location (<span id="user-region-name" style="color:#a5b4fc; font-weight:600;">detecting...</span>), popular languages you can teach include:
+                </p>
+            </div>
+
+            <div class="language-chips-grid" id="language-chips-container">
+                </div>
+
+            <div class="selection-summary-box">
+                <div class="selected-list-text">
+                    Your selected teaching languages: <strong id="selected-langs-summary">Kiswahili</strong>
+                </div>
+                <div class="chip-actions">
+                    <button class="btn-sm-add" id="btn-add-custom-lang"><i class="fa-solid fa-plus"></i> Add Another Language</button>
+                    <a href="https://mulaearn.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-primary" style="padding: 8px 16px; font-size:0.85rem;">Continue to Registration →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-box" id="learners-section" style="background: transparent; border: none; padding: 0;">
+            <div class="learners-header-row">
                 <div>
-                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white flex items-center gap-3">
-                        <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
-                        People Looking to Chat
-                    </h2>
-                    <p class="text-sm text-gray-400 mt-1">Accept requests below to initiate chat stream and start receiving local payouts instantly.</p>
+                    <h2 class="section-title">International Learners Looking for Teachers</h2>
+                    <p class="section-sub">International learners are looking for African language teachers. Choose a learner and start a lesson.</p>
                 </div>
-                <div class="text-xs text-indigo-500/80 font-mono flex items-center gap-2 bg-indigo-500/5 px-3 py-1.5 rounded-lg border border-indigo-500/10">
-                    <i class="fa-solid fa-rotate animate-spin" style="animation-duration: 4s;"></i>
-                    <span>Next update in: <span id="refresh-timer" class="font-bold">60s</span></span>
+                <div class="rotation-badge">
+                    <i class="fa-solid fa-arrows-rotate fa-spin"></i> Next learner update in: <span id="timer-count">60</span>s
                 </div>
             </div>
 
-            <!-- CHAT DASHBOARD -->
-            <div id="chat-dashboard" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-        </section>
+            <div class="learner-grid" id="learner-grid">
+                </div>
 
-        <section class="scroll-reveal glass-card rounded-3xl p-8 sm:p-10 relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-r from-indigo-500/[0.02] to-transparent pointer-events-none"></div>
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-y lg:divide-y-0 lg:divide-x divide-white/5">
-                <div class="space-y-2 pt-4 lg:pt-0">
-                    <div class="text-indigo-500 text-2xl"><i class="fa-solid fa-paper-plane"></i></div>
-                    <div id="stat-requests" class="text-3xl sm:text-4xl font-extrabold text-white">4,812</div>
-                    <div class="text-xs sm:text-sm font-semibold tracking-wider text-gray-400 uppercase">Active Chat Requests</div>
-                </div>
-                <div class="space-y-2 pt-4 lg:pt-0">
-                    <div class="text-indigo-500 text-2xl"><i class="fa-solid fa-users"></i></div>
-                    <div id="stat-online" class="text-3xl sm:text-4xl font-extrabold text-white">24,930</div>
-                    <div class="text-xs sm:text-sm font-semibold tracking-wider text-gray-400 uppercase">Members Online</div>
-                </div>
-                <div class="space-y-2 pt-4 lg:pt-0">
-                    <div class="text-indigo-500 text-2xl"><i class="fa-solid fa-globe"></i></div>
-                    <div id="stat-countries" class="text-3xl sm:text-4xl font-extrabold text-white">107</div>
-                    <div class="text-xs sm:text-sm font-semibold tracking-wider text-gray-400 uppercase">Regions Represented</div>
-                </div>
-                <div class="space-y-2 pt-4 lg:pt-0">
-                    <div class="text-indigo-500 text-2xl"><i class="fa-solid fa-circle-check"></i></div>
-                    <div id="stat-conversations" class="text-3xl sm:text-4xl font-extrabold text-white">284,203</div>
-                    <div class="text-xs sm:text-sm font-semibold tracking-wider text-gray-400 uppercase">Conversations Today</div>
-                </div>
-            </div>
-        </section>
-
-        <section class="scroll-reveal space-y-12">
-            <div class="text-center max-w-xl mx-auto space-y-2">
-                <h2 class="text-3xl font-extrabold tracking-tight text-white">Simple Monetization Blueprint</h2>
-                <p class="text-sm text-gray-400">Follow these 5 clear steps to build high volume incoming reward streams daily.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 relative">
-                <div class="glass-card rounded-2xl p-6 relative flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1">
-                    <div class="space-y-4">
-                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center border border-indigo-500/30 text-indigo-400 font-bold text-lg">1</div>
-                        <h3 class="text-lg font-bold text-white">Register</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Secure your license and set up your private profile link instantly via the registration node.</p>
-                    </div>
-                </div>
-                <div class="glass-card rounded-2xl p-6 relative flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1">
-                    <div class="space-y-4">
-                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center border border-indigo-500/30 text-indigo-400 font-bold text-lg">2</div>
-                        <h3 class="text-lg font-bold text-white">Receive Requests</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Incoming requests fill your real-time secure dashboard system automatically on verification.</p>
-                    </div>
-                </div>
-                <div class="glass-card rounded-2xl p-6 relative flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1">
-                    <div class="space-y-4">
-                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center border border-indigo-500/30 text-indigo-400 font-bold text-lg">3</div>
-                        <h3 class="text-lg font-bold text-white">Chat with Users</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Respond seamlessly, enjoy networking and maintain secure chat configurations with profiles.</p>
-                    </div>
-                </div>
-                <div class="glass-card rounded-2xl p-6 relative flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1">
-                    <div class="space-y-4">
-                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center border border-indigo-500/30 text-indigo-400 font-bold text-lg">4</div>
-                        <h3 class="text-lg font-bold text-white">Earn Rewards</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Track dynamic multi-layer rewards converted precisely into your local standard currency balance.</p>
-                    </div>
-                </div>
-                <div class="glass-card rounded-2xl p-6 relative flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1">
-                    <div class="space-y-4">
-                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center border border-indigo-500/30 text-indigo-400 font-bold text-lg">5</div>
-                        <h3 class="text-lg font-bold text-white">Withdraw Earnings</h3>
-                        <p class="text-xs text-gray-400 leading-relaxed">Process continuous localized cashouts down to your chosen direct network provider safely.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="scroll-reveal space-y-12">
-            <div class="text-center max-w-xl mx-auto space-y-2">
-                <h2 class="text-3xl font-extrabold tracking-tight text-white">Verified Regional Success Stories</h2>
-                <p class="text-sm text-gray-400">See how top earners across global networks are utilizing the platform daily.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="glass-card rounded-2xl p-6 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=150&auto=format&fit=crop&q=80" alt="Emmanuel" class="w-12 h-12 rounded-xl object-cover border border-white/10">
-                            <div>
-                                <h4 class="font-bold text-white text-sm">Emmanuel K.</h4>
-                                <span class="text-xs text-indigo-500 flex items-center gap-1">🇬🇭 Ghana</span>
-                            </div>
-                        </div>
-                        <div class="text-xs bg-indigo-500/10 text-indigo-400 px-2 py-1 rounded-md font-mono font-semibold">MTN</div>
-                    </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        "The IP detection correctly adjusted all my earnings to GHS from day one. I've successfully cleared withdrawals straight to my MTN wallet without hitches. mulaearn has provided a perfect remote chat income."
-                    </p>
-                </div>
-                <div class="glass-card rounded-2xl p-6 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" alt="Chinedu" class="w-12 h-12 rounded-xl object-cover border border-white/10">
-                            <div>
-                                <h4 class="font-bold text-white text-sm">Chinedu O.</h4>
-                                <span class="text-xs text-indigo-500 flex items-center gap-1">🇳🇬 Nigeria</span>
-                            </div>
-                        </div>
-                        <div class="text-xs bg-indigo-500/10 text-indigo-400 px-2 py-1 rounded-md font-mono font-semibold">Flutterwave</div>
-                    </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        "Extremely intuitive UI structure. The chat rotation updates keeping global profiles freshly accessible means you always have users to coordinate with. Payout directly through Flutterwave arrived super quick into my bank account."
-                    </p>
-                </div>
-                <div class="glass-card rounded-2xl p-6 space-y-4">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80" alt="Amani" class="w-12 h-12 rounded-xl object-cover border border-white/10">
-                            <div>
-                                <h4 class="font-bold text-white text-sm">Amani M.</h4>
-                                <span class="text-xs text-indigo-500 flex items-center gap-1">🇰🇪 Kenya</span>
-                            </div>
-                        </div>
-                        <div class="text-xs bg-indigo-500/10 text-indigo-400 px-2 py-1 rounded-md font-mono font-semibold">M-Pesa</div>
-                    </div>
-                    <p class="text-xs text-gray-400 leading-relaxed">
-                        "Connecting with verified international chats is fluid. The dynamic conversion factors make estimating exact earnings seamless in KSh. Highly recommend to everyone looking for stable monetization pipelines."
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="scroll-reveal max-w-4xl mx-auto text-center space-y-12">
-            <div class="glass-card rounded-3xl p-8 sm:p-12 border border-indigo-500/20 relative overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.5)]">
-                <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/[0.03] via-transparent to-violet-500/[0.03] pointer-events-none"></div>
-                <div class="relative z-10 space-y-6 max-w-2xl mx-auto">
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Ready to Get Started?</h2>
-                    <p class="text-sm sm:text-base text-gray-400 leading-relaxed">
-                        Create your system credentials today and lock in access to the global chat rotation stream. Your localized currency node will activate immediately upon verification.
-                    </p>
-                    <div class="pt-4">
-                        <a href="https://mulaearn.com/register.php?ref=Aimo254" target="_blank" class="inline-block bg-gradient-to-r from-indigo-500 via-violet-400 to-indigo-600 hover:from-indigo-400 hover:to-violet-300 text-white font-black text-xl px-10 py-5 rounded-2xl shadow-[0_10px_30px_rgba(99,102,241,0.4)] transition-all duration-300 hover:scale-105">
-                            👉 Register Now
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer class="border-t border-white/5 pt-8 pb-4 text-center max-w-3xl mx-auto">
-            <p class="text-xs text-gray-600 font-mono">
-                &copy; 2026 MULAEARN GLOBAL❤️ . Developed for deployment optimization.
+            <p class="illustrative-note">
+                * Displayed lesson rewards are illustrative. Actual rewards depend on platform terms, learner requests and eligibility.
             </p>
-        </footer>
+        </section>
 
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="stat-requests">1,480+</div>
+                <div class="stat-label">Active Lesson Requests</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-teachers">3,250+</div>
+                <div class="stat-label">Teachers Online</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-langs">45+</div>
+                <div class="stat-label">Languages Available</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-today">890+</div>
+                <div class="stat-label">Lessons Requested Today</div>
+            </div>
+        </section>
+
+        <section class="section-box" id="blueprint">
+            <div class="section-header">
+                <h2 class="section-title">Simple Language Teaching Blueprint</h2>
+                <p class="section-sub">Five easy steps to get started as an African language teacher</p>
+            </div>
+            <div class="blueprint-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Register</h3>
+                    <p class="step-desc">Create your MULAEARN teacher profile in under two minutes.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Select Languages</h3>
+                    <p class="step-desc">Choose languages you are confident teaching to learners.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Receive Requests</h3>
+                    <p class="step-desc">International learners discover teachers and request lessons.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Teach & Earn</h3>
+                    <p class="step-desc">Teach lessons and earn according to applicable platform rewards.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">5</div>
+                    <h3 class="step-title">Withdraw Earnings</h3>
+                    <p class="step-desc">Withdraw eligible earnings using supported local payout methods.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-box" id="explore-languages">
+            <div class="section-header">
+                <h2 class="section-title">Explore African Languages</h2>
+                <p class="section-sub">Popular languages requested by international students</p>
+            </div>
+            <div class="explore-grid" id="explore-grid">
+                </div>
+        </section>
+
+        <section class="section-box">
+            <div class="section-header">
+                <h2 class="section-title">More Than a Language. Learn the Culture Behind It.</h2>
+                <p class="section-sub">Why students across the globe choose African language tutors</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card">
+                    <div class="why-icon">🗣️</div>
+                    <h3 class="why-title">Speak Naturally</h3>
+                    <p class="why-desc">Master slang, everyday expressions, and native cadence from real local speakers.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🌍</div>
+                    <h3 class="why-title">Understand Culture</h3>
+                    <p class="why-desc">Gain rich insights into regional traditions, proverbs, music, and heritage.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">✈️</div>
+                    <h3 class="why-title">Travel With Confidence</h3>
+                    <p class="why-desc">Navigate African countries smoothly with local conversational fluency.</p>
+                </div>
+                <div class="why-card">
+                    <div class="why-icon">🤝</div>
+                    <h3 class="why-title">Connect With People</h3>
+                    <p class="why-desc">Build genuine bonds with diaspora family members, friends, and business partners.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-box">
+            <div class="section-header">
+                <h2 class="section-title">Sample Language Teacher Experiences</h2>
+                <p class="section-sub">Hear what tutors say about teaching their native languages online</p>
+            </div>
+            <div class="stories-grid">
+                <div class="story-card">
+                    "I enjoy teaching Kiswahili to international learners while sharing the culture behind the language."
+                    <div class="story-author">― Grace M. 🇰🇪 (Kenya)</div>
+                </div>
+                <div class="story-card">
+                    "Teaching Twi gives me an opportunity to share my language and culture with people around the world."
+                    <div class="story-author">― Kwesi A. 🇬🇭 (Ghana)</div>
+                </div>
+                <div class="story-card">
+                    "I can teach French and Cameroon Pidgin to learners interested in understanding Cameroon more deeply."
+                    <div class="story-author">― Jean-Pierre N. 🇨🇲 (Cameroon)</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-cta">
+            <h2>Ready to Teach Your Language?</h2>
+            <p>Your language has value. Teach what you know, share your culture and connect with learners around the world.</p>
+            <a href="https://mulaearn.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-primary" style="padding: 16px 36px; font-size:1.1rem;">
+                👉 Become a Language Teacher
+            </a>
+        </section>
     </main>
 
-    <!-- FLOATING ACTION BUTTONS -->
-    <div class="fixed bottom-6 left-6 z-50 flex flex-col gap-3">
-        <a href="https://t.me/+Z1v3XTwOb_g0ODA0" target="_blank" class="flex items-center gap-2 bg-[#2AABEE] hover:bg-[#2298d6] text-white px-5 py-3 rounded-full shadow-[0_4px_15px_rgba(42,171,238,0.4)] transition-transform hover:scale-105">
-            <i class="fa-brands fa-telegram text-xl"></i>
-            <span class="font-bold text-sm">Join Channel</span>
+    <footer>
+        <div class="container">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px;">
+                <div class="logo">
+                    <div class="logo-icon"><i class="fa-solid fa-earth-africa"></i></div>
+                    <span>MULAEARN GLOBAL</span>
+                </div>
+                <div>&copy; 2026 MULAEARN GLOBAL. All rights reserved.</div>
+            </div>
+            <div class="footer-disclaimer">
+                Platform features, learner activity, rewards and availability may vary by region. Displayed learner activity, statistics and earnings examples may be illustrative. Actual eligibility, lesson rewards and withdrawal options are determined by MULAEARN GLOBAL's current terms and available services.
+            </div>
+        </div>
+    </footer>
+
+    <!-- TOAST ALERTS CONTAINER -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- STACKED FLOATING BUTTONS -->
+    <div class="floating-actions">
+        <a href="https://chat.whatsapp.com/Lh18pSgRmUJ66LV1UWdF4r?s=cl&p=a&mlu=4" target="_blank" rel="noopener" class="wa-btn">
+            <i class="fa-brands fa-whatsapp"></i> Join Group
         </a>
-        <a href="https://t.me/ceo_risha01" target="_blank" class="flex items-center gap-2 bg-indigo-500 hover:bg-indigo-400 text-white px-5 py-3 rounded-full shadow-[0_4px_15px_rgba(99,102,241,0.3)] transition-transform hover:scale-105">
-            <i class="fa-solid fa-headset text-xl"></i>
-            <span class="font-bold text-sm">Support Inbox</span>
+        <a href="https://t.me/ceo_risha01" target="_blank" rel="noopener" class="support-btn">
+            <i class="fa-brands fa-telegram"></i> Support
         </a>
     </div>
 
-    <!-- NOTIFICATION PORTAL -->
-    <div id="notification-portal" class="fixed bottom-6 right-6 z-50 flex flex-col gap-4 max-w-sm w-full pointer-events-none"></div>
-
     <script>
-        // STRICT AFRICAN CURRENCY SCALING (No USD fallbacks for countries using MTN)
-        const CURRENCY_MAP = {
-            'KE': { code: 'KSh', rate: 10.5 }, 'GH': { code: 'GHS', rate: 1.0 },
-            'UG': { code: 'UGX', rate: 250.0 }, 'CM': { code: 'XAF', rate: 41.0 },
-            'NG': { code: 'NGN', rate: 105.0 }, 'TZ': { code: 'TZS', rate: 180.0 },
-            'ZA': { code: 'ZAR', rate: 1.2 }, 'BW': { code: 'BWP', rate: 0.95 },
-            'BJ': { code: 'XOF', rate: 41.0 }, 'TG': { code: 'XOF', rate: 41.0 },
-            'ZM': { code: 'ZMW', rate: 1.8 }, 'MW': { code: 'MWK', rate: 115.0 },
-            'RW': { code: 'RWF', rate: 88.0 }, 
-            'ZW': { code: 'USD', rate: 0.089 }, 'NA': { code: 'USD', rate: 0.089 },
-            'SL': { code: 'USD', rate: 0.089 }, 'SZ': { code: 'USD', rate: 0.089,  }
+        // CONFIGURATION DATA BY COUNTRY WITH ACCURATE ARITHMETIC CONVERSION MULTIPLIERS
+        const COUNTRY_CONFIG = {
+            GH: { code: "GH", name: "Ghana", flag: "🇬🇭", currency: "GHS", baseMult: 0.11, languages: ["Twi", "English", "Ewe", "Ga", "Dagbani", "Fante"], payoutMethods: ["MTN Mobile Money", "Telecel Cash", "Bank Transfer"] },
+            KE: { code: "KE", name: "Kenya", flag: "🇰🇪", currency: "KSh", baseMult: 1, languages: ["Kiswahili", "English", "Kikuyu", "Luo", "Kalenjin", "Luhya", "Kamba", "Somali"], payoutMethods: ["M-Pesa", "Airtel Money", "Bank Transfer"] },
+            TZ: { code: "TZ", name: "Tanzania", flag: "🇹🇿", currency: "TZS", baseMult: 20.0, languages: ["Kiswahili", "English", "Arabic"], payoutMethods: ["M-Pesa", "Tigo Pesa", "Airtel Money"] },
+            UG: { code: "UG", name: "Uganda", flag: "🇺🇬", currency: "UGX", baseMult: 28.0, languages: ["Luganda", "English", "Runyankole", "Acholi", "Lusoga", "Lugisu", "Swahili"], payoutMethods: ["MTN Mobile Money", "Airtel Money"] },
+            CM: { code: "CM", name: "Cameroon", flag: "🇨🇲", currency: "XAF", baseMult: 4.6, languages: ["French", "Cameroon Pidgin English", "English", "Ewondo", "Duala", "Fulfulde", "Basaa", "Bamileke"], payoutMethods: ["Orange Money", "MTN Mobile Money"] },
+            NG: { code: "NG", name: "Nigeria", flag: "🇳🇬", currency: "NGN", baseMult: 11.5, languages: ["Yoruba", "Igbo", "Hausa", "English", "Nigerian Pidgin"], payoutMethods: ["Flutterwave", "OPay", "Bank Transfer"] },
+            RW: { code: "RW", name: "Rwanda", flag: "🇷🇼", currency: "RWF", baseMult: 10.5, languages: ["Kinyarwanda", "English", "French", "Swahili"], payoutMethods: ["MTN Mobile Money", "Airtel Money"] },
+            ZA: { code: "ZA", name: "South Africa", flag: "🇿🇦", currency: "ZAR", baseMult: 0.14, languages: ["Zulu", "Xhosa", "Afrikaans", "Sotho", "Tswana", "English", "Sepedi", "Tsonga"], payoutMethods: ["EFT", "Capitec", "PayPal"] },
+            ZM: { code: "ZM", name: "Zambia", flag: "🇿🇲", currency: "ZMW", baseMult: 0.21, languages: ["Bemba", "Nyanja", "Tonga", "Lozi", "English"], payoutMethods: ["MTN Mobile Money", "Airtel Money"] },
+            MW: { code: "MW", name: "Malawi", flag: "🇲🇼", currency: "MWK", baseMult: 13.5, languages: ["Chichewa", "English", "Tumbuka", "Yao"], payoutMethods: ["Airtel Money", "TNM Mpamba"] },
+            BW: { code: "BW", name: "Botswana", flag: "🇧🇼", currency: "BWP", baseMult: 0.10, languages: ["Setswana", "English", "Kalanga"], payoutMethods: ["Orange Money", "MyZaka"] },
+            NA: { code: "NA", name: "Namibia", flag: "🇳🇦", currency: "NAD", baseMult: 0.14, languages: ["Oshiwambo", "Afrikaans", "English", "Nama", "Herero"], payoutMethods: ["E-Wallet", "Bank Transfer"] },
+            ZW: { code: "ZW", name: "Zimbabwe", flag: "🇿🇼", currency: "USD", baseMult: 0.0077, languages: ["Shona", "Ndebele", "English", "Chewa"], payoutMethods: ["EcoCash", "USD Bank Transfer"] },
+            SL: { code: "SL", name: "Sierra Leone", flag: "🇸🇱", currency: "USD", baseMult: 0.0077, languages: ["Krio", "English", "Mende", "Temne"], payoutMethods: ["Orange Money", "AfriMoney"] },
+            SZ: { code: "SZ", name: "Eswatini", flag: "🇸🇿", currency: "SZL", baseMult: 0.14, languages: ["siSwati", "English"], payoutMethods: ["MTN Mobile Money"] },
+            BJ: { code: "BJ", name: "Benin", flag: "🇧🇯", currency: "XOF", baseMult: 4.6, languages: ["Fon", "French", "Yoruba", "Bariba"], payoutMethods: ["MTN Mobile Money", "Moov Money"] },
+            TG: { code: "TG", name: "Togo", flag: "🇹🇬", currency: "XOF", baseMult: 4.6, languages: ["Ewe", "French", "Kabiye"], payoutMethods: ["TMoney", "Moov Money"] },
+            DEFAULT: { code: "INT", name: "International", flag: "🌐", currency: "USD", baseMult: 0.0077, languages: ["Kiswahili", "Twi", "Luganda", "Yoruba", "French", "Zulu", "Amharic", "Igbo"], payoutMethods: ["PayPal", "Bank Wire", "Crypto"] }
         };
 
-        // EXCLUSIVE USE OF "MTN" ONLY
-        const PROVIDERS_BY_COUNTRY = {
-            'KE': ['M-Pesa', 'Airtel Money'], 'GH': ['MTN', 'Telecel Cash'],
-            'UG': ['MTN', 'Airtel Money'], 'CM': ['MTN', 'Orange Money'],
-            'BW': ['Orange Money', 'MyZaka'], 'NG': ['Flutterwave', 'Opay', 'Palmpay'],
-            'ZA': ['Bank Transfer', 'Capitec Pay'], 'TZ': ['M-Pesa', 'Airtel Money', 'Tigo Pesa'],
-            'BJ': ['MTN', 'Moov Money'], 'TG': ['TMoney', 'Moov Money'],
-            'ZM': ['MTN', 'Airtel Money'], 'MW': ['Airtel Money', 'TNM Mpamba'],
-            'RW': ['MTN', 'Airtel Money'], 'ZW': ['binance', 'Trustwallet'],
-            'NA': ['Paypal', 'TrustWallet'], 'SL': ['Binance', 'Trustwallet'],
-            'SZ': ['OKX', 'Trustwallet']
-        };
-
-        const flagMap = { 
-            KE:'🇰🇪', GH:'🇬🇭', UG:'🇺🇬', CM:'🇨🇲', NG:'🇳🇬', TZ:'🇹🇿', ZA:'🇿🇦', BW:'🇧🇼', 
-            BJ:'🇧🇯', TG:'🇹🇬', ZM:'🇿🇲', MW:'🇲🇼', RW:'🇷🇼', ZW:'🇿🇼', NA:'🇳🇦', SL:'🇸🇱', SZ:'🇸🇿'
-        };
-
-        const AFRICAN_COUNTRIES = [
-            { name: 'Kenya', code: 'KE', flag: '🇰🇪' }, { name: 'Ghana', code: 'GH', flag: '🇬🇭' },
-            { name: 'Uganda', code: 'UG', flag: '🇺🇬' }, { name: 'Cameroon', code: 'CM', flag: '🇨🇲' },
-            { name: 'Nigeria', code: 'NG', flag: '🇳🇬' }, { name: 'Tanzania', code: 'TZ', flag: '🇹🇿' },
-            { name: 'South Africa', code: 'ZA', flag: '🇿🇦' }, { name: 'Botswana', code: 'BW', flag: '🇧🇼' },
-            { name: 'Benin', code: 'BJ', flag: '🇧🇯' }, { name: 'Togo', code: 'TG', flag: '🇹🇬' },
-            { name: 'Zambia', code: 'ZM', flag: '🇿🇲' }, { name: 'Malawi', code: 'MW', flag: '🇲🇼' },
-            { name: 'Rwanda', code: 'RW', flag: '🇷🇼' }, { name: 'Zimbabwe', code: 'ZW', flag: '🇿🇼' },
-            { name: 'Namibia', code: 'NA', flag: '🇳🇦' }, { name: 'Sierra Leone', code: 'SL', flag: '🇸🇱' },
-            { name: 'Swaziland', code: 'SZ', flag: '🇸🇿' }
+        const USERNAME_POOL = [
+            "Amelia", "Daniel", "Sophia", "Liam", "Emma", "Mateo", "Olivia", "Lucas", "Chloe", "Ethan",
+            "Ava", "Benjamin", "Mia", "Alexander", "Isabella", "Mason", "Charlotte", "Harper", "James", "Ella",
+            "Noah", "Evelyn", "Elijah", "Abigail", "Logan", "Emily", "Jackson", "Elizabeth", "Levi", "Mila",
+            "Sebastian", "Avery", "Owen", "Sofia", "Theodore", "Camila", "Aiden", "Aria", "Samuel", "Scarlett",
+            "Joseph", "Victoria", "John", "Madison", "David", "Luna", "Wyatt", "Grace", "Matthew", "Penelope",
+            "Asher", "Layla", "Carter", "Riley", "Julian", "Zoey", "Grayson", "Nora", "Leo", "Lily"
         ];
 
-        const WITHDRAWAL_FIRST_NAMES = [
-            'Martin', 'Rohan', 'Olumide', 'John', 'Sarah', 'Aisha', 'Fatoumata', 'Babirye', 'Tau', 'Sipho', 
-            'Chipo', 'Farai', 'Tendai', 'Kabelo', 'Lindiwe', 'Musa', 'Bintu', 'Obinna', 'Khamisi', 'Nia', 'wisdom', 'opong', 'lewiss', 'Rayan', 'Twente', 'Owen' 
-        ];
-        const WITHDRAWAL_LAST_INITIALS = 'ABCDEFGHIJKLMNOPRSTVWYZ'.split('');
-
-        // -------------------------------------------------------------------------
-        // DYNAMIC GLOBAL CHAT PROFILES GENERATION
-        // -------------------------------------------------------------------------
-
-        const GLOBAL_FIRST_NAMES = [
-            "Liam", "Olivia", "Noah", "Emma", "Oliver", "Ava", "Elijah", "Charlotte", "William", "Sophia",
-            "James", "Amelia", "Benjamin", "Isabella", "Lucas", "Mia", "Henry", "Evelyn", "Alexander", "Harper",
-            "Michael", "Camila", "Ethan", "Gianna", "Daniel", "Elizabeth", "Matthew", "Eleanor", "Aiden", "Ella",
-            "Mateo", "Valentina", "Santiago", "Maria", "Nicolas", "Lucia", "Joaquin", "Martina", "Tomas", "Catalina",
-            "Wei", "Sakura", "Minho", "Priya", "Ali", "Yui", "Ji", "Rohan", "Fatima", "Kenji",
-            "Arthur", "Alice", "Leon", "Chloe", "Lukas", "Sophie", "Thomas", "Anna", "Gabriel", "Stella",
-            "David", "Jessica", "Jack", "Lily", "Oscar", "Freya", "Hugo", "Nina", "Felix", "Clara",
-            "Sebastian", "Aria", "Jackson", "Penelope", "Levi", "Layla", "Mateo", "Riley", "Theodore", "Zoey",
-            "Wyatt", "Nora", "Carter", "Hannah", "Jayden", "Hazel", "Owen", "Violet", "Luke", "Aurora"
-        ];
-
-        const PROFILE_CATEGORIES = ['people', 'animal', 'pet', 'car', 'avatar', 'drawing', 'dynamic_art', 'electronics', 'jewelry', 'nice_shot', 'beach'];
-        let GENERATED_CHAT_PROFILES = [];
-        
-        function generateSingleProfile(index) {
-            // STRICT USERNAME RULE: Just a single name, no numbers, no countries
-            const fName = GLOBAL_FIRST_NAMES[index % GLOBAL_FIRST_NAMES.length];
-            const username = fName; 
-            
-            // Force ~35% of generations to be 'people' to easily satisfy the "at least 3" requirement
-            let cat = PROFILE_CATEGORIES[index % PROFILE_CATEGORIES.length];
-            if (index % 3 === 0) cat = 'people'; 
-
-            const uniqueSeed = "SeedHash_" + index;
-            
-            let imgUrl = "";
-            switch(cat) {
-                case 'people': imgUrl = `https://loremflickr.com/150/150/face,person/all?lock=${index}`; break;
-                case 'animal': imgUrl = `https://loremflickr.com/150/150/wildlife?lock=${index}`; break;
-                case 'pet': imgUrl = `https://loremflickr.com/150/150/pet?lock=${index}`; break;
-                case 'car': imgUrl = `https://loremflickr.com/150/150/sportscar?lock=${index}`; break;
-                case 'avatar': imgUrl = `https://api.dicebear.com/7.x/bottts/svg?seed=${uniqueSeed}`; break;
-                case 'drawing': imgUrl = `https://api.dicebear.com/7.x/micah/svg?seed=${uniqueSeed}`; break;
-                case 'dynamic_art': imgUrl = `https://api.dicebear.com/7.x/shapes/svg?seed=${uniqueSeed}`; break;
-                case 'electronics': imgUrl = `https://loremflickr.com/150/150/electronics?lock=${index}`; break;
-                case 'jewelry': imgUrl = `https://loremflickr.com/150/150/jewelry?lock=${index}`; break;
-                case 'nice_shot': imgUrl = `https://picsum.photos/seed/${uniqueSeed}/150/150`; break;
-                case 'beach': imgUrl = `https://loremflickr.com/150/150/beach?lock=${index}`; break;
-            }
-            return { username, img: imgUrl, category: cat };
+        const IMAGE_POOL = [];
+        for (let i = 1; i <= 70; i++) {
+            IMAGE_POOL.push(`https://i.pravatar.cc/300?img=${i}`);
         }
 
-        // Initialize enough base profiles
-        for(let i=1; i<=150; i++) {
-            GENERATED_CHAT_PROFILES.push(generateSingleProfile(i));
-        }
+        const ALL_EXPLORE_LANGUAGES = [
+            { flag: "🇰🇪", name: "Kiswahili", desc: "Spoken widely in East Africa by over 100M+ native & fluent speakers." },
+            { flag: "🇬🇭", name: "Twi", desc: "Major Akan language of Ghana rich in proverbs and oral history." },
+            { flag: "🇺🇬", name: "Luganda", desc: "Widely spoken native language in the Buganda region of Uganda." },
+            { flag: "🇳🇬", name: "Yoruba", desc: "Prominent West African language with deep cultural traditions." },
+            { flag: "🇳🇬", name: "Igbo", desc: "Core language of Southeastern Nigeria, rich in tonal structure." },
+            { flag: "🇳🇬", name: "Hausa", desc: "Major Chadic language spoken across northern Nigeria & Sahel." },
+            { flag: "🇨🇲", name: "Cameroon Pidgin", desc: "Vibrant lingua franca used across urban regions of Cameroon." },
+            { flag: "🇨🇲", name: "French", desc: "Official language heavily spoken across Central & West Africa." },
+            { flag: "🇷🇼", name: "Kinyarwanda", desc: "Bantu language spoken by millions across Rwanda." },
+            { flag: "🇿🇦", name: "Zulu", desc: "Most widely spoken first language in South Africa." },
+            { flag: "🇿🇦", name: "Xhosa", desc: "Iconic click-sound Bantu language of South Africa." },
+            { flag: "🇿🇲", name: "Bemba", desc: "Major language spoken in Zambia's Copperbelt & Northern region." },
+            { flag: "🇲🇼", name: "Chichewa", desc: "National language of Malawi and spoken in Mozambique." },
+            { flag: "🇿🇼", name: "Shona", desc: "Bantu language spoken by the majority population in Zimbabwe." }
+        ];
 
-        // -------------------------------------------------------------------------
-        // BASE LOGIC AND TIMERS
-        // -------------------------------------------------------------------------
+        // GLOBAL STATE
+        let userConfig = COUNTRY_CONFIG.KE;
+        let selectedLanguages = [];
 
-        let USER_CURRENCY = 'USD';
-        let USER_CONVERSION_RATE = 0.065;
-        let activeRefreshInterval = 60;
-        let timerCountdown;
-        const TWO_HOURS_MS = 2 * 60 * 60 * 1000;
+        // INITIALIZATION
+        document.addEventListener("DOMContentLoaded", () => {
+            initCountryDetection();
+            renderExploreGrid();
+            setupAddLanguageHandler();
+            startRotationTimer();
+            startToastTicker();
+            animateCounters();
+        });
 
-        const CacheController = {
-            get: (key) => {
-                try { const item = localStorage.getItem(key); return item ? JSON.parse(item) : []; } 
-                catch(e) { return []; }
-            },
-            save: (key, value, expiryHours = 24) => {
-                try {
-                    let data = CacheController.get(key);
-                    data.push({ val: value, stamp: Date.now() });
-                    const limit = expiryHours * 60 * 60 * 1000;
-                    data = data.filter(item => (Date.now() - item.stamp) < limit);
-                    localStorage.setItem(key, JSON.stringify(data));
-                } catch(e) {}
-            },
-            has: (key, value) => {
-                const data = CacheController.get(key);
-                return data.some(item => item.val === value);
-            }
-        };
+        // LIVE IP GEOLOCATION DETECTOR (WITH NO-CACHE FORCE)
+        async function initCountryDetection() {
+            let countryCode = null;
 
-        async function initializeLocationAndCurrency() {
+            // Provider 1: GeoJS (Highly stable, no CORS issues)
             try {
-                const response = await fetch('https://ipapi.co/json/');
-                if (response.ok) {
-                    const data = await response.json();
-                    if(data.country) { setCurrencyState(data.country, data.country_name); return; }
+                const res = await fetch('https://get.geojs.io/v1/ip/geo.json?nocache=' + Date.now(), { cache: 'no-store' });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (data && data.country_code) countryCode = data.country_code;
                 }
-            } catch (e) { console.warn("IP fallback initialized."); }
-            setCurrencyState('GH', 'Ghana'); 
-        }
+            } catch(e) { console.warn("Primary IP lookup failed...", e); }
 
-        function setCurrencyState(countryCode, countryName) {
-            let data = CURRENCY_MAP[countryCode];
-            let flag = flagMap[countryCode];
-
-            if (!data) {
-                data = { code: 'USD', rate: 0.065 };
-                flag = '🌐';
-                if (!countryName) countryName = countryCode;
-            } else if (!countryName) {
-                const countryNames = { 
-                    KE:'Kenya', GH:'Ghana', UG:'Uganda', CM:'Cameroon', NG:'Nigeria', 
-                    TZ:'Tanzania', ZA:'South Africa', BW:'Botswana', BJ:'Benin', 
-                    TG:'Togo', ZM:'Zambia', MW:'Malawi', RW:'Rwanda', ZW:'Zimbabwe',
-                    NA:'Namibia', SL:'Sierra Leone', SZ:'Swaziland'
-                };
-                countryName = countryNames[countryCode] || countryCode;
+            // Provider 2: api.country.is (Secondary fallback)
+            if (!countryCode) {
+                try {
+                    const res = await fetch('https://api.country.is?nocache=' + Date.now(), { cache: 'no-store' });
+                    if (res.ok) {
+                        const data = await res.json();
+                        if (data && data.country) countryCode = data.country;
+                    }
+                } catch(e) { console.warn("Secondary IP lookup failed...", e); }
             }
 
-            USER_CURRENCY = data.code;
-            USER_CONVERSION_RATE = data.rate;
-            document.getElementById('detected-country').innerText = `${flag} ${countryName} (${data.code})`;
-            
-            renderChatDashboard();
-            startRotationTimers();
-            startWithdrawalPopups();
-            startStatsCounterAnimation();
-        }
-
-        function getRandomValueRange(minGHS, maxGHS) {
-            const baseline = Math.random() * (maxGHS - minGHS) + minGHS;
-            return (baseline * USER_CONVERSION_RATE).toFixed(USER_CURRENCY === 'USD' ? 2 : 0);
-        }
-
-        function renderChatDashboard() {
-            const container = document.getElementById('chat-dashboard');
-            container.innerHTML = ''; 
-
-            let activeCardsCount = Math.floor(Math.random() * 3) + 5; 
-            
-            // STRICT CACHE - Key is the image URL to allow natural name repetition but prevent image repetition
-            let usedChatProfiles = JSON.parse(localStorage.getItem('usedChatImagesCache') || '{}');
-            const now = Date.now();
-            
-            for (let key in usedChatProfiles) {
-                if (now - usedChatProfiles[key] > TWO_HOURS_MS) delete usedChatProfiles[key];
-            }
-            
-            let availableProfiles = GENERATED_CHAT_PROFILES.filter(p => !usedChatProfiles[p.img]);
-            
-            // Generate more profiles on the fly to ensure we NEVER run out of 'people' images
-            if (availableProfiles.filter(p => p.category === 'people').length < 3 || availableProfiles.length < activeCardsCount) {
-                for(let i=0; i<40; i++) {
-                    let newP = generateSingleProfile(GENERATED_CHAT_PROFILES.length + i);
-                    GENERATED_CHAT_PROFILES.push(newP);
-                    if(!usedChatProfiles[newP.img]) availableProfiles.push(newP);
+            // Apply configuration logic based on detection result
+            if (countryCode) {
+                const codeUpper = countryCode.toUpperCase();
+                // Assign country specific configuration, OR default to Global/USD for unlisted countries
+                if (COUNTRY_CONFIG[codeUpper]) {
+                    userConfig = COUNTRY_CONFIG[codeUpper];
+                } else {
+                    userConfig = COUNTRY_CONFIG.DEFAULT; 
                 }
+            } else {
+                userConfig = COUNTRY_CONFIG.KE; // Ultimate fallback if completely offline
+            }
+
+            updateUIWithConfig();
+        }
+
+        function updateUIWithConfig() {
+            document.getElementById("detected-country").textContent = `${userConfig.flag} ${userConfig.name}`;
+            document.getElementById("detected-currency").textContent = `(${userConfig.currency})`;
+            document.getElementById("user-region-name").textContent = userConfig.name;
+
+            const saved = localStorage.getItem("mula_selected_langs");
+            if (saved) {
+                try { selectedLanguages = JSON.parse(saved); } catch(e) { selectedLanguages = []; }
             }
             
-            // ENSURE AT LEAST 3 PEOPLE PROFILES ARE ALWAYS INCLUDED
-            let peopleProfiles = availableProfiles.filter(p => p.category === 'people');
-            let otherProfiles = availableProfiles.filter(p => p.category !== 'people');
-            
-            peopleProfiles.sort(() => Math.random() - 0.5);
-            otherProfiles.sort(() => Math.random() - 0.5);
-            
-            let selectedProfiles = [];
-            let peopleCount = Math.min(3, peopleProfiles.length);
-            selectedProfiles.push(...peopleProfiles.slice(0, peopleCount));
-            
-            let remainingCount = activeCardsCount - selectedProfiles.length;
-            selectedProfiles.push(...otherProfiles.slice(0, remainingCount));
-            
-            selectedProfiles.sort(() => Math.random() - 0.5);
+            if (!selectedLanguages || selectedLanguages.length === 0) {
+                selectedLanguages = userConfig.languages.slice(0, 3);
+            }
 
-            selectedProfiles.forEach(profileObj => {
-                usedChatProfiles[profileObj.img] = now; 
-                const localizedReward = getRandomValueRange(21, 40);
+            renderLanguageChips();
+            generateLearnerCards();
+        }
 
-                const cardHtml = `
-                    <div class="glass-card rounded-2xl p-5 flex flex-col justify-between relative overflow-hidden transition-all duration-500 hover:scale-[1.02] group border border-white/5">
-                        <div class="flex items-start justify-between">
-                            <div class="flex items-center space-x-3.5">
-                                <div class="relative">
-                                    <img src="${profileObj.img}" alt="${profileObj.username}" loading="lazy" class="w-14 h-14 rounded-xl object-cover bg-gray-800 border border-white/10 shadow-inner">
-                                    <span class="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-4 border-darkBg rounded-full flex items-center justify-center">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span>
-                                    </span>
-                                </div>
-                                <div>
-                                    <div class="flex items-center space-x-1.5">
-                                        <h3 class="font-bold text-white text-base tracking-wide">${profileObj.username}</h3>
-                                        <!-- Flags and country names removed as requested -->
-                                    </div>
-                                    <div class="text-xs text-indigo-400 font-semibold flex items-center gap-1.5 mt-0.5">
-                                        <span class="dot-pulse flex items-center space-x-0.5 bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">
-                                            <span>.</span><span>.</span><span>.</span>
-                                        </span>
-                                        <span class="text-gray-400 font-normal">wants to chat with you </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        // LANGUAGE SELECTOR RENDERING
+        function renderLanguageChips() {
+            const container = document.getElementById("language-chips-container");
+            container.innerHTML = "";
 
-                        <div class="mt-6 flex items-center justify-between pt-4 border-t border-white/5">
-                            <div>
-                                <span class="block text-[10px] text-gray-500 uppercase tracking-widest font-semibold">You will be paid </span>
-                                <span class="text-xl font-black text-white tracking-tight bg-gradient-to-r from-white to-indigo-300 bg-clip-text text-transparent">
-                                    ${USER_CURRENCY} ${localizedReward}
-                                </span>
-                            </div>
-                            <a href="https://mulaearn.com/register.php?ref=Aimo254" target="_blank" class="bg-green-600 text-white font-bold text-xs px-4 py-2.5 rounded-xl transition-all duration-300 shadow-md group-hover:shadow-[0_0_15px_rgba(99,102,241,0.3)]">
-                                Start chat 
-                            </a>
-                        </div>
-                    </div>
+            userConfig.languages.forEach(lang => {
+                const isSelected = selectedLanguages.includes(lang);
+                const chip = document.createElement("div");
+                chip.className = `lang-chip ${isSelected ? "selected" : ""}`;
+                chip.innerHTML = `
+                    <span>${lang}</span>
+                    <i class="fa-solid fa-check checkmark"></i>
                 `;
-                container.innerHTML += cardHtml;
+                chip.onclick = () => toggleLanguage(lang);
+                container.appendChild(chip);
             });
 
-            localStorage.setItem('usedChatImagesCache', JSON.stringify(usedChatProfiles));
+            updateSelectedSummary();
         }
 
-        function startRotationTimers() {
-            clearInterval(timerCountdown);
-            activeRefreshInterval = Math.floor(Math.random() * 31) + 45; 
-            
-            const timerDisplay = document.getElementById('refresh-timer');
-            timerCountdown = setInterval(() => {
-                activeRefreshInterval--;
-                if(timerDisplay) timerDisplay.innerText = `${activeRefreshInterval}s`;
-                if(activeRefreshInterval <= 0) {
-                    clearInterval(timerCountdown);
-                    simulateSkeletonLoadThenRefresh();
+        function toggleLanguage(lang) {
+            if (selectedLanguages.includes(lang)) {
+                if (selectedLanguages.length > 1) {
+                    selectedLanguages = selectedLanguages.filter(l => l !== lang);
+                }
+            } else {
+                selectedLanguages.push(lang);
+            }
+            try {
+                localStorage.setItem("mula_selected_langs", JSON.stringify(selectedLanguages));
+            } catch(e){}
+            renderLanguageChips();
+        }
+
+        function updateSelectedSummary() {
+            document.getElementById("selected-langs-summary").textContent = selectedLanguages.join(" • ");
+        }
+
+        function setupAddLanguageHandler() {
+            document.getElementById("btn-add-custom-lang").onclick = () => {
+                const custom = prompt("Enter an African language you can teach:");
+                if (custom && custom.trim() !== "") {
+                    const clean = custom.trim();
+                    if (!userConfig.languages.includes(clean)) {
+                        userConfig.languages.push(clean);
+                    }
+                    if (!selectedLanguages.includes(clean)) {
+                        selectedLanguages.push(clean);
+                    }
+                    renderLanguageChips();
+                }
+            };
+        }
+
+        // CARD GENERATION
+        function generateLearnerCards() {
+            const grid = document.getElementById("learner-grid");
+            grid.classList.add("faded");
+
+            setTimeout(() => {
+                grid.innerHTML = "";
+
+                for (let i = 0; i < 6; i++) {
+                    const name = USERNAME_POOL[Math.floor(Math.random() * USERNAME_POOL.length)];
+                    const photo = IMAGE_POOL[Math.floor(Math.random() * IMAGE_POOL.length)];
+                    
+                    const baseKsh = Math.floor(250 + Math.random() * 121); 
+                    const convertedVal = baseKsh * userConfig.baseMult;
+                    
+                    let formattedPayout = "";
+                    if (userConfig.currency === 'USD') {
+                        formattedPayout = `$${convertedVal.toFixed(2)}`;
+                    } else if (convertedVal > 1000) {
+                        const rounded = Math.round(convertedVal / 50) * 50;
+                        formattedPayout = `${userConfig.currency} ${rounded.toLocaleString()}`;
+                    } else {
+                        const rounded = Math.round(convertedVal);
+                        formattedPayout = `${userConfig.currency} ${rounded.toLocaleString()}`;
+                    }
+
+                    const card = document.createElement("div");
+                    card.className = "learner-card";
+
+                    card.innerHTML = `
+                        <div>
+                            <div class="learner-header">
+                                <div class="avatar-container">
+                                    <img src="${photo}" alt="${name}">
+                                </div>
+                                <div class="learner-meta">
+                                    <h3>${name}</h3>
+                                    <div class="online-status">
+                                        <div class="online-dot"></div> Online
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="lesson-request-bar">
+                                <i class="fa-solid fa-graduation-cap request-icon"></i>
+                                <div class="request-content">
+                                    <strong class="request-lang-text">🎓 Wants to learn from you</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="payout-row">
+                            <div class="payout-info">
+                                <span class="payout-sub">YOU WILL EARN</span>
+                                <span class="payout-val">${formattedPayout}</span>
+                            </div>
+                            <a href="https://mulaearn.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-start-lesson">
+                                Start Lesson <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    `;
+
+                    grid.appendChild(card);
+                }
+
+                grid.classList.remove("faded");
+            }, 300);
+        }
+
+        // ROTATION TIMER
+        let countdown = 60;
+        function startRotationTimer() {
+            const timerEl = document.getElementById("timer-count");
+            setInterval(() => {
+                countdown--;
+                if (timerEl) timerEl.textContent = countdown;
+                if (countdown <= 0) {
+                    countdown = 60;
+                    generateLearnerCards();
                 }
             }, 1000);
         }
 
-        function simulateSkeletonLoadThenRefresh() {
-            const container = document.getElementById('chat-dashboard');
-            container.classList.add('opacity-40', 'pointer-events-none');
-            setTimeout(() => {
-                renderChatDashboard();
-                container.classList.remove('opacity-40', 'pointer-events-none');
-                startRotationTimers();
-            }, 800);
-        }
+        // LIVE WITHDRAWAL TOAST NOTIFICATIONS (CROSS-COUNTRY, 2 SENTENCES, 30-60 SECONDS INTERVAL)
+        function startToastTicker() {
+            const container = document.getElementById("toast-container");
+            
+            const triggerNotification = () => {
+                // Pick a random country configuration from the available pool across all countries
+                const countryKeys = Object.keys(COUNTRY_CONFIG);
+                const randomCountryKey = countryKeys[Math.floor(Math.random() * countryKeys.length)];
+                const cConfig = COUNTRY_CONFIG[randomCountryKey];
 
-        let lastNotificationProvider = "";
-        function startWithdrawalPopups() {
-            const scheduleNextNotification = () => {
-                const randomTime = (Math.floor(Math.random() * 15) + 15) * 1000; 
+                // Generate random withdrawal amount appropriate for that country's currency scale
+                const baseWithdrawalKsh = Math.floor(800 + Math.random() * (15000 - 800 + 1));
+                const convertedAmt = baseWithdrawalKsh * cConfig.baseMult;
+                
+                let formattedWithdrawal = "";
+                if (cConfig.currency === 'USD') {
+                    formattedWithdrawal = `$${convertedAmt.toFixed(2)}`;
+                } else if (convertedAmt > 1000) {
+                    const rounded = Math.round(convertedAmt / 100) * 100;
+                    formattedWithdrawal = `${cConfig.currency} ${rounded.toLocaleString()}`;
+                } else {
+                    const rounded = Math.round(convertedAmt);
+                    formattedWithdrawal = `${cConfig.currency} ${rounded.toLocaleString()}`;
+                }
+
+                const randName = USERNAME_POOL[Math.floor(Math.random() * USERNAME_POOL.length)];
+
+                const toast = document.createElement("div");
+                toast.className = "toast-card";
+                toast.innerHTML = `
+                    <i class="fa-solid fa-circle-check toast-icon"></i>
+                    <div class="toast-text-content">
+                        <span><strong>${randName}</strong> ${cConfig.flag} withdrew <strong>${formattedWithdrawal}</strong>.</span>
+                        <span style="color: var(--text-muted); font-size: 0.8rem;">From teaching African languages.</span>
+                    </div>
+                `;
+                container.appendChild(toast);
+
+                // Make the toast disappear smoothly after 4.5 seconds
                 setTimeout(() => {
-                    triggerSingleNotification();
-                    scheduleNextNotification();
-                }, randomTime);
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateY(15px)';
+                    toast.style.transition = 'all 0.5s ease';
+                    setTimeout(() => toast.remove(), 500);
+                }, 4500);
+
+                // Schedule next notification in a random interval between 30 and 60 seconds (30000ms to 60000ms)
+                const nextInterval = Math.floor(30000 + Math.random() * 30001);
+                setTimeout(triggerNotification, nextInterval);
             };
-            scheduleNextNotification();
+
+            // Initial trigger after 30 seconds
+            setTimeout(triggerNotification, 30000);
         }
 
-        function triggerSingleNotification() {
-            const portal = document.getElementById('notification-portal');
-            if(!portal) return;
-
-            let randomName = "";
-            let targetCountry = {};
-            let attempts = 0;
-            
-            do {
-                const fName = WITHDRAWAL_FIRST_NAMES[Math.floor(Math.random() * WITHDRAWAL_FIRST_NAMES.length)];
-                const lName = WITHDRAWAL_LAST_INITIALS[Math.floor(Math.random() * WITHDRAWAL_LAST_INITIALS.length)] + '.';
-                randomName = fName + ' ' + lName;
-                targetCountry = AFRICAN_COUNTRIES[Math.floor(Math.random() * AFRICAN_COUNTRIES.length)]; 
-                attempts++;
-            } while(CacheController.has('withdrawal_users', randomName) && attempts < 50);
-            
-            CacheController.save('withdrawal_users', randomName, 24);
-            const baselineGhsValue = Math.floor(Math.random() * 301) + 150; 
-            let convertedAmount = "";
-            attempts = 0;
-            
-            const specData = CURRENCY_MAP[targetCountry.code] || { code: 'USD', rate: 0.065 };
-            
-            do {
-                const rawAmount = baselineGhsValue * specData.rate;
-                convertedAmount = rawAmount.toFixed(specData.code === 'USD' ? 2 : 0);
-                attempts++;
-            } while(CacheController.has('withdrawal_amounts', convertedAmount) && attempts < 20);
-            CacheController.save('withdrawal_amounts', convertedAmount, 2);
-
-            let providerList = PROVIDERS_BY_COUNTRY[targetCountry.code] || ['Bank Transfer'];
-            let chosenProvider = providerList[Math.floor(Math.random() * providerList.length)];
-            
-            if(providerList.length > 1 && chosenProvider === lastNotificationProvider) {
-                chosenProvider = providerList.find(p => p !== lastNotificationProvider) || chosenProvider;
-            }
-            lastNotificationProvider = chosenProvider;
-
-            const toastId = 'toast-' + Date.now();
-            const toastHtml = `
-                <div id="${toastId}" class="notification-anim glass-card pointer-events-auto w-full max-w-sm rounded-2xl p-4 flex items-center space-x-3 border-l-4 border-l-indigo-500 shadow-2xl bg-opacity-95">
-                    <div class="bg-indigo-500/10 p-2.5 rounded-xl text-indigo-400">
-                        <i class="fa-solid fa-circle-check text-xl text-emerald-400"></i>
-                    </div>
-                    <div class="flex-1">
-                        <div class="flex items-center justify-between">
-                            <span class="text-xs font-bold text-white flex items-center gap-1">${randomName} <span class="text-[10px]">${targetCountry.flag}</span></span>
-                            <span class="class="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded border border-emerald-500/20">Paid</span>
+        // EXPLORE LANGUAGES GRID
+        function renderExploreGrid() {
+            const grid = document.getElementById("explore-grid");
+            grid.innerHTML = "";
+            ALL_EXPLORE_LANGUAGES.forEach(item => {
+                const card = document.createElement("div");
+                card.className = "explore-card";
+                card.innerHTML = `
+                    <div>
+                        <div class="explore-top">
+                            <span class="explore-flag">${item.flag}</span>
+                            <span class="explore-name">${item.name}</span>
                         </div>
-                        <p class="text-xs text-gray-300 mt-1">
-                            Withdrew <strong class="text-white">${specData.code} ${Number(convertedAmount).toLocaleString()}</strong> via <span class="text-indigo-400 font-medium">${chosenProvider}</span>
-                        </p>
+                        <p class="explore-desc">${item.desc}</p>
                     </div>
-                </div>
-            `;
-            
-            portal.insertAdjacentHTML('beforeend', toastHtml);
-            setTimeout(() => { const el = document.getElementById(toastId); if (el) el.remove(); }, 5100);
+                    <a href="https://mulaearn.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-teach-sm">Teach This Language</a>
+                `;
+                grid.appendChild(card);
+            });
         }
 
-        function startStatsCounterAnimation() {
-            const configurations = [
-                { id: 'stat-requests', base: 4500, range: 400 },
-                { id: 'stat-online', base: 24000, range: 1200 },
-                { id: 'stat-countries', base: 17, range: 0, floorOnly: true },
-                { id: 'stat-conversations', base: 184000, range: 5000 }
+        // ANIMATED STATS COUNTERS
+        function animateCounters() {
+            const elements = [
+                { id: "stat-requests", end: 1480 },
+                { id: "stat-teachers", end: 3250 },
+                { id: "stat-langs", end: 45 },
+                { id: "stat-today", end: 890 }
             ];
-            setInterval(() => {
-                configurations.forEach(stat => {
-                    const el = document.getElementById(stat.id);
-                    if(el && stat.range > 0) {
-                        const calculated = stat.base + Math.floor(Math.random() * stat.range);
-                        el.innerText = calculated.toLocaleString();
+
+            elements.forEach(item => {
+                const el = document.getElementById(item.id);
+                if (!el) return;
+                let start = 0;
+                const step = Math.ceil(item.end / 50);
+                const timer = setInterval(() => {
+                    start += step;
+                    if (start >= item.end) {
+                        el.textContent = item.end.toLocaleString() + "+";
+                        clearInterval(timer);
+                    } else {
+                        el.textContent = start.toLocaleString() + "+";
                     }
-                });
-            }, 3500);
+                }, 30);
+            });
         }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            initializeLocationAndCurrency();
-
-            const reveals = document.querySelectorAll('.scroll-reveal');
-            const observerOptions = { threshold: 0.05, rootMargin: "0px 0px -40px 0px" };
-            const revealObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            reveals.forEach(target => revealObserver.observe(target));
-            setTimeout(() => { if(reveals[0]) reveals[0].classList.add('active'); }, 200);
-        });
     </script>
 </body>
 </html>
+
