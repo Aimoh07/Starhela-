@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MULAEARN GLOBAL | Teach African Languages & Earn</title>
+    <title>LIPAHUB GLOBAL | Teach African Languages & Earn</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -28,6 +28,13 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            min-width: 0;
+        }
+
+        html, body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
         }
 
         body {
@@ -35,7 +42,6 @@
             color: var(--text-main);
             font-family: var(--font-family);
             line-height: 1.6;
-            overflow-x: hidden;
             position: relative;
         }
 
@@ -56,9 +62,10 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 16px;
             position: relative;
             z-index: 1;
+            width: 100%;
         }
 
         /* HEADER */
@@ -70,24 +77,27 @@
             background: rgba(3, 7, 18, 0.85);
             border-bottom: 1px solid var(--card-border);
             padding: 16px 0;
+            width: 100%;
         }
 
         .nav-wrapper {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 15px;
+            gap: 12px;
+            width: 100%;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             font-weight: 800;
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             letter-spacing: -0.5px;
             color: #fff;
             text-decoration: none;
+            white-space: nowrap;
         }
 
         .logo-icon {
@@ -101,23 +111,25 @@
             color: #fff;
             font-size: 1.1rem;
             box-shadow: 0 4px 12px var(--accent-glow);
+            flex-shrink: 0;
         }
 
         .header-right {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .location-pill {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--card-border);
-            padding: 8px 14px;
+            padding: 6px 12px;
             border-radius: 30px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             color: var(--text-sub);
         }
 
@@ -128,13 +140,14 @@
         .btn-register-nav {
             background: linear-gradient(135deg, var(--primary-indigo), var(--primary-violet));
             color: #fff;
-            padding: 9px 20px;
+            padding: 8px 16px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: transform 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 14px var(--accent-glow);
+            white-space: nowrap;
         }
 
         .btn-register-nav:hover {
@@ -144,8 +157,9 @@
 
         /* HERO SECTION */
         .hero {
-            padding: 80px 0 50px 0;
+            padding: 60px 0 40px 0;
             text-align: center;
+            width: 100%;
         }
 
         .hero-badge {
@@ -155,21 +169,24 @@
             background: rgba(99, 102, 241, 0.12);
             border: 1px solid rgba(99, 102, 241, 0.3);
             color: #a5b4fc;
-            padding: 6px 16px;
+            padding: 6px 14px;
             border-radius: 30px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 700;
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
+            max-width: 100%;
+            text-align: center;
         }
 
         .hero-title {
-            font-size: 3rem;
+            font-size: 2.3rem;
             font-weight: 800;
             line-height: 1.15;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             letter-spacing: -1px;
+            word-break: break-word;
         }
 
         .gradient-text {
@@ -180,33 +197,37 @@
 
         .hero-subtitle {
             max-width: 680px;
-            margin: 0 auto 36px auto;
+            margin: 0 auto 30px auto;
             color: var(--text-sub);
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.6;
+            padding: 0 10px;
         }
 
         .hero-ctas {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 16px;
+            gap: 12px;
             flex-wrap: wrap;
+            width: 100%;
         }
 
         .btn-primary {
             background: linear-gradient(135deg, var(--primary-indigo), var(--primary-violet));
             color: #fff;
-            padding: 14px 28px;
+            padding: 12px 24px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: all 0.2s;
             box-shadow: 0 8px 24px var(--accent-glow);
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 8px;
+            text-align: center;
         }
 
         .btn-primary:hover {
@@ -218,12 +239,16 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--card-border);
             color: var(--text-main);
-            padding: 14px 28px;
+            padding: 12px 24px;
             border-radius: 12px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
 
         .btn-secondary:hover {
@@ -235,46 +260,48 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 20px;
-            padding: 36px;
-            margin: 40px 0;
+            padding: 24px 16px;
+            margin: 30px 0;
             backdrop-filter: blur(12px);
+            width: 100%;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 24px;
         }
 
         .section-title {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 8px;
+            word-break: break-word;
         }
 
         .section-sub {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
         }
 
         .language-chips-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .lang-chip {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--card-border);
-            padding: 10px 18px;
+            padding: 8px 14px;
             border-radius: 30px;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             user-select: none;
         }
 
@@ -302,17 +329,19 @@
         .selection-summary-box {
             background: rgba(0, 0, 0, 0.25);
             border-radius: 12px;
-            padding: 16px 20px;
+            padding: 14px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 12px;
+            width: 100%;
         }
 
         .selected-list-text {
             color: #e2e8f0;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            word-break: break-word;
         }
 
         .selected-list-text strong {
@@ -321,18 +350,21 @@
 
         .chip-actions {
             display: flex;
-            gap: 10px;
+            gap: 8px;
+            flex-wrap: wrap;
+            width: 100%;
         }
 
         .btn-sm-add {
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid var(--card-border);
             color: #fff;
-            padding: 8px 14px;
+            padding: 8px 12px;
             border-radius: 8px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             cursor: pointer;
             transition: background 0.2s;
+            flex: 1;
         }
 
         .btn-sm-add:hover {
@@ -343,30 +375,33 @@
         .learners-header-row {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-            gap: 15px;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
         }
 
         .rotation-badge {
             background: rgba(16, 185, 129, 0.12);
             border: 1px solid rgba(16, 185, 129, 0.3);
             color: var(--accent-emerald);
-            padding: 6px 14px;
+            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             display: flex;
             align-items: center;
             gap: 6px;
+            white-space: nowrap;
         }
 
         .learner-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
+            grid-template-columns: 1fr;
+            gap: 20px;
             transition: opacity 0.4s ease;
+            width: 100%;
         }
 
         .learner-grid.faded {
@@ -377,13 +412,14 @@
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 16px;
-            padding: 24px;
+            padding: 20px;
             backdrop-filter: blur(12px);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             position: relative;
             transition: transform 0.2s, border-color 0.2s;
+            width: 100%;
         }
 
         .learner-card:hover {
@@ -394,14 +430,14 @@
         .learner-header {
             display: flex;
             align-items: center;
-            gap: 14px;
-            margin-bottom: 16px;
+            gap: 12px;
+            margin-bottom: 14px;
         }
 
         .avatar-container {
             position: relative;
-            width: 56px;
-            height: 56px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             overflow: hidden;
             border: 2px solid rgba(255, 255, 255, 0.1);
@@ -416,7 +452,7 @@
         }
 
         .learner-meta h3 {
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: #fff;
             margin-bottom: 2px;
@@ -427,31 +463,31 @@
             align-items: center;
             gap: 6px;
             color: var(--accent-emerald);
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 600;
         }
 
         .online-dot {
-            width: 8px;
-            height: 8px;
+            width: 7px;
+            height: 7px;
             background-color: var(--accent-emerald);
             border-radius: 50%;
-            box-shadow: 0 0 8px var(--accent-emerald);
+            box-shadow: 0 0 6px var(--accent-emerald);
         }
 
         .lesson-request-bar {
             background: rgba(99, 102, 241, 0.12);
             border: 1px solid rgba(99, 102, 241, 0.3);
             border-radius: 12px;
-            padding: 12px 14px;
-            margin: 14px 0;
+            padding: 12px;
+            margin: 12px 0;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .request-icon {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #a5b4fc;
             flex-shrink: 0;
         }
@@ -462,7 +498,7 @@
         }
 
         .request-lang-text {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: #e0e7ff;
             font-weight: 700;
             line-height: 1.3;
@@ -475,7 +511,8 @@
             margin-top: 10px;
             padding-top: 12px;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
-            gap: 12px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         .payout-info {
@@ -484,14 +521,14 @@
         }
 
         .payout-sub {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             font-weight: 700;
             color: var(--text-muted);
             letter-spacing: 0.5px;
         }
 
         .payout-val {
-            font-size: 1.35rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: #38bdf8;
             letter-spacing: -0.5px;
@@ -501,10 +538,10 @@
             background: linear-gradient(135deg, var(--primary-indigo), var(--primary-violet));
             color: #fff;
             text-decoration: none;
-            padding: 10px 18px;
+            padding: 8px 14px;
             border-radius: 10px;
             font-weight: 700;
-            font-size: 0.88rem;
+            font-size: 0.82rem;
             display: inline-flex;
             align-items: center;
             gap: 6px;
@@ -520,22 +557,23 @@
         .illustrative-note {
             text-align: center;
             color: var(--text-muted);
-            font-size: 0.8rem;
-            margin-top: 16px;
+            font-size: 0.78rem;
+            margin-top: 14px;
+            padding: 0 10px;
         }
 
         /* TOAST NOTIFICATIONS (CENTERED & 2 LINES) */
         .toast-container {
             position: fixed;
-            bottom: 30px; 
+            bottom: 24px; 
             left: 50%;
             transform: translateX(-50%);
             z-index: 9998;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
             width: 92%;
-            max-width: 380px;
+            max-width: 360px;
             pointer-events: none;
             align-items: center;
         }
@@ -544,14 +582,14 @@
             background: rgba(15, 23, 42, 0.95);
             border: 1px solid rgba(99, 102, 241, 0.4);
             backdrop-filter: blur(12px);
-            border-radius: 14px;
-            padding: 12px 16px;
+            border-radius: 12px;
+            padding: 10px 14px;
             color: #fff;
-            font-size: 0.88rem;
+            font-size: 0.82rem;
             box-shadow: 0 10px 30px rgba(0,0,0,0.6);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             width: 100%;
             text-align: left;
@@ -564,7 +602,7 @@
 
         .toast-icon {
             color: var(--accent-emerald);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             flex-shrink: 0;
         }
 
@@ -572,56 +610,59 @@
             display: flex;
             flex-direction: column;
             line-height: 1.35;
+            word-break: break-word;
         }
 
         /* STATS SECTION */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin: 30px 0;
+            width: 100%;
         }
 
         .stat-card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 24px;
+            border-radius: 14px;
+            padding: 18px 12px;
             text-align: center;
         }
 
         .stat-number {
-            font-size: 2.2rem;
+            font-size: 1.7rem;
             font-weight: 800;
             color: #a5b4fc;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .stat-label {
             color: var(--text-muted);
-            font-size: 0.88rem;
+            font-size: 0.8rem;
             font-weight: 500;
         }
 
         /* BLUEPRINT SECTION */
         .blueprint-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 30px;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 24px;
+            width: 100%;
         }
 
         .step-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--card-border);
-            border-radius: 14px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 16px;
             position: relative;
         }
 
         .step-number {
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             background: rgba(99, 102, 241, 0.2);
             color: #a5b4fc;
             border-radius: 50%;
@@ -629,34 +670,35 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 12px;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
         }
 
         .step-title {
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 700;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .step-desc {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-muted);
         }
 
         /* EXPLORE LANGUAGES GRID */
         .explore-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 16px;
-            margin-top: 30px;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 24px;
+            width: 100%;
         }
 
         .explore-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--card-border);
-            border-radius: 14px;
-            padding: 18px;
+            border-radius: 12px;
+            padding: 16px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -670,31 +712,32 @@
         }
 
         .explore-flag {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
         .explore-name {
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 0.95rem;
         }
 
         .explore-desc {
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             color: var(--text-muted);
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .btn-teach-sm {
             background: rgba(99, 102, 241, 0.15);
             color: #a5b4fc;
             border: 1px solid rgba(99, 102, 241, 0.3);
-            padding: 6px 12px;
+            padding: 8px 12px;
             border-radius: 8px;
             font-size: 0.8rem;
             font-weight: 600;
             text-decoration: none;
             text-align: center;
             transition: all 0.2s;
+            display: block;
         }
 
         .btn-teach-sm:hover {
@@ -705,58 +748,60 @@
         /* WHY LEARN CARDS */
         .why-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            grid-template-columns: 1fr;
+            gap: 14px;
+            margin-top: 24px;
+            width: 100%;
         }
 
         .why-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--card-border);
-            border-radius: 14px;
-            padding: 24px;
+            border-radius: 12px;
+            padding: 18px;
         }
 
         .why-icon {
-            font-size: 2rem;
-            margin-bottom: 12px;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
         }
 
         .why-title {
             font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
+            font-size: 1.05rem;
+            margin-bottom: 6px;
         }
 
         .why-desc {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-muted);
         }
 
         /* TESTIMONIALS */
         .stories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            grid-template-columns: 1fr;
+            gap: 14px;
+            margin-top: 24px;
+            width: 100%;
         }
 
         .story-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--card-border);
-            border-radius: 14px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 16px;
             font-style: italic;
             color: var(--text-sub);
-            font-size: 0.92rem;
+            font-size: 0.88rem;
         }
 
         .story-author {
-            margin-top: 14px;
+            margin-top: 10px;
             font-style: normal;
             font-weight: 700;
             color: #a5b4fc;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
         }
 
         /* FINAL CTA */
@@ -764,124 +809,145 @@
             text-align: center;
             background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.15));
             border: 1px solid rgba(99, 102, 241, 0.3);
-            border-radius: 24px;
-            padding: 60px 20px;
-            margin: 60px 0;
+            border-radius: 20px;
+            padding: 40px 16px;
+            margin: 40px 0;
+            width: 100%;
         }
 
         .final-cta h2 {
-            font-size: 2.2rem;
+            font-size: 1.7rem;
             font-weight: 800;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            word-break: break-word;
         }
 
         .final-cta p {
             color: var(--text-sub);
             max-width: 550px;
-            margin: 0 auto 28px auto;
+            margin: 0 auto 24px auto;
+            font-size: 0.92rem;
         }
 
         /* FOOTER */
         footer {
             border-top: 1px solid var(--card-border);
-            padding: 40px 0 100px 0; 
+            padding: 30px 0 40px 0; 
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            width: 100%;
         }
 
         .footer-disclaimer {
-            margin-top: 20px;
-            padding-top: 20px;
+            margin-top: 16px;
+            padding-top: 16px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
-            line-height: 1.6;
+            line-height: 1.5;
             color: #64748b;
+            font-size: 0.75rem;
         }
 
-        /* FLOATING BUTTONS (BOTTOM LEFT - STACKED) */
+        /* STATIC BOTTOM BUTTONS (NOT FLOATING) */
         .floating-actions {
-            position: fixed;
-            bottom: 24px;
-            left: 24px;
             display: flex;
             flex-direction: column;
             gap: 12px;
-            z-index: 99999;
+            align-items: center;
+            margin: 40px 0 20px 0;
+            width: 100%;
         }
 
         .wa-btn {
             background: #25D366; 
             color: #ffffff !important;
-            padding: 12px 22px;
+            padding: 12px 24px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 18px rgba(37, 211, 102, 0.5);
+            font-size: 0.9rem;
+            box-shadow: 0 4px 18px rgba(37, 211, 102, 0.3);
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            max-width: 320px;
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .wa-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 22px rgba(37, 211, 102, 0.7);
+            box-shadow: 0 6px 22px rgba(37, 211, 102, 0.5);
         }
 
         .support-btn {
             background: #2AABEE; /* Telegram Blue */
             color: #ffffff !important;
-            padding: 12px 22px;
+            padding: 12px 24px;
             border-radius: 30px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 0.95rem;
-            box-shadow: 0 4px 18px rgba(42, 171, 238, 0.5);
+            font-size: 0.9rem;
+            box-shadow: 0 4px 18px rgba(42, 171, 238, 0.3);
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            max-width: 320px;
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .support-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 22px rgba(42, 171, 238, 0.7);
+            box-shadow: 0 6px 22px rgba(42, 171, 238, 0.5);
         }
 
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 768px) {
+        /* RESPONSIVE DESIGN BREAKPOINTS FOR TABLETS/DESKTOPS */
+        @media (min-width: 640px) {
+            .container {
+                padding: 0 24px;
+            }
             .hero-title {
-                font-size: 2.1rem;
-            }
-            .nav-wrapper {
-                flex-wrap: wrap;
-            }
-            .header-right {
-                width: 100%;
-                justify-content: space-between;
-                margin-top: 10px;
+                font-size: 2.8rem;
             }
             .learner-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
-            .section-box {
-                padding: 24px 16px;
+            .blueprint-grid, .explore-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
-            .selection-summary-box {
-                flex-direction: column;
-                align-items: flex-start;
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
             }
-            .toast-container {
-                bottom: 24px;
-                width: 90%;
+            .why-grid, .stories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .learners-header-row {
+                flex-direction: row;
+                align-items: flex-end;
             }
             .floating-actions {
-                bottom: 16px;
-                left: 16px;
+                flex-direction: row;
+                justify-content: center;
             }
             .wa-btn, .support-btn {
-                padding: 10px 16px;
-                font-size: 0.85rem;
+                max-width: 220px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .learner-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .blueprint-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .explore-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .why-grid, .stories-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
     </style>
@@ -892,7 +958,7 @@
         <div class="container nav-wrapper">
             <a href="#" class="logo">
                 <div class="logo-icon"><i class="fa-solid fa-earth-africa"></i></div>
-                <span>MULAEARN GLOBAL</span>
+                <span>LIPAHUB GLOBAL</span>
             </a>
             
             <div class="header-right">
@@ -901,7 +967,7 @@
                     <span id="detected-country">Detecting location...</span>
                     <span id="detected-currency" style="font-weight:700; color:#fff;">(...)</span>
                 </div>
-                <a href="https://mulaearn.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-register-nav">Register Now</a>
+                <a href="https://lipahub.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-register-nav">Register Now</a>
             </div>
         </div>
     </header>
@@ -919,7 +985,7 @@
                 Connect with international learners who want to learn African languages, culture and everyday expressions. Share your language skills, teach remotely and earn from eligible lessons.
             </p>
             <div class="hero-ctas">
-                <a href="https://mulaearn.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-primary">
+                <a href="https://lipahub.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-primary">
                     👉 Register as a Language Teacher
                 </a>
                 <a href="#explore-languages" class="btn-secondary">Explore Languages</a>
@@ -943,7 +1009,7 @@
                 </div>
                 <div class="chip-actions">
                     <button class="btn-sm-add" id="btn-add-custom-lang"><i class="fa-solid fa-plus"></i> Add Another Language</button>
-                    <a href="https://mulaearn.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-primary" style="padding: 8px 16px; font-size:0.85rem;">Continue to Registration →</a>
+                    <a href="https://lipahub.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-primary" style="padding: 8px 16px; font-size:0.85rem; flex: 1; text-align: center;">Continue to Registration →</a>
                 </div>
             </div>
         </section>
@@ -995,7 +1061,7 @@
                 <div class="step-card">
                     <div class="step-number">1</div>
                     <h3 class="step-title">Register</h3>
-                    <p class="step-desc">Create your MULAEARN teacher profile in under two minutes.</p>
+                    <p class="step-desc">Create your LIPAHUB teacher profile in under two minutes.</p>
                 </div>
                 <div class="step-card">
                     <div class="step-number">2</div>
@@ -1082,39 +1148,39 @@
         <section class="final-cta">
             <h2>Ready to Teach Your Language?</h2>
             <p>Your language has value. Teach what you know, share your culture and connect with learners around the world.</p>
-            <a href="https://mulaearn.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-primary" style="padding: 16px 36px; font-size:1.1rem;">
+            <a href="https://lipahub.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-primary" style="padding: 14px 28px; font-size:1rem;">
                 👉 Become a Language Teacher
             </a>
         </section>
+
+        <!-- STATIC BOTTOM BUTTONS (NOT FLOATING) -->
+        <div class="floating-actions">
+            <a href="https://t.me/+Z1v3XTwOb_g0ODA0" target="_blank" rel="noopener" class="wa-btn">
+                <i class="fa-brands fa-whatsapp"></i> Join Channel 
+            </a>
+            <a href="https://t.me/ceo_risha01" target="_blank" rel="noopener" class="support-btn">
+                <i class="fa-brands fa-telegram"></i> Support
+            </a>
+        </div>
     </main>
 
     <footer>
         <div class="container">
-            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:15px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
                 <div class="logo">
                     <div class="logo-icon"><i class="fa-solid fa-earth-africa"></i></div>
-                    <span>MULAEARN GLOBAL</span>
+                    <span>LIPAHUB GLOBAL</span>
                 </div>
-                <div>&copy; 2026 MULAEARN GLOBAL. All rights reserved.</div>
+                <div>&copy; 2026 LIPAHUB GLOBAL. All rights reserved.</div>
             </div>
             <div class="footer-disclaimer">
-                Platform features, learner activity, rewards and availability may vary by region. Displayed learner activity, statistics and earnings examples may be illustrative. Actual eligibility, lesson rewards and withdrawal options are determined by MULAEARN GLOBAL's current terms and available services.
+                Platform features, learner activity, rewards and availability may vary by region. Displayed learner activity, statistics and earnings examples may be illustrative. Actual eligibility, lesson rewards and withdrawal options are determined by LIPAHUB GLOBAL's current terms and available services.
             </div>
         </div>
     </footer>
 
     <!-- TOAST ALERTS CONTAINER -->
     <div class="toast-container" id="toast-container"></div>
-
-    <!-- STACKED FLOATING BUTTONS -->
-    <div class="floating-actions">
-        <a href="https://t.me/+Z1v3XTwOb_g0ODA0" target="_blank" rel="noopener" class="wa-btn">
-            <i class="fa-brands fa-whatsapp"></i> Join Channel 
-        </a>
-        <a href="https://t.me/ceo_risha01" target="_blank" rel="noopener" class="support-btn">
-            <i class="fa-brands fa-telegram"></i> Support
-        </a>
-    </div>
 
     <script>
         // CONFIGURATION DATA BY COUNTRY WITH ACCURATE ARITHMETIC CONVERSION MULTIPLIERS
@@ -1188,7 +1254,7 @@
         async function initCountryDetection() {
             let countryCode = null;
 
-            // Provider 1: GeoJS (Highly stable, no CORS issues)
+            // Provider 1: GeoJS
             try {
                 const res = await fetch('https://get.geojs.io/v1/ip/geo.json?nocache=' + Date.now(), { cache: 'no-store' });
                 if (res.ok) {
@@ -1197,7 +1263,7 @@
                 }
             } catch(e) { console.warn("Primary IP lookup failed...", e); }
 
-            // Provider 2: api.country.is (Secondary fallback)
+            // Provider 2: api.country.is
             if (!countryCode) {
                 try {
                     const res = await fetch('https://api.country.is?nocache=' + Date.now(), { cache: 'no-store' });
@@ -1208,17 +1274,15 @@
                 } catch(e) { console.warn("Secondary IP lookup failed...", e); }
             }
 
-            // Apply configuration logic based on detection result
             if (countryCode) {
                 const codeUpper = countryCode.toUpperCase();
-                // Assign country specific configuration, OR default to Global/USD for unlisted countries
                 if (COUNTRY_CONFIG[codeUpper]) {
                     userConfig = COUNTRY_CONFIG[codeUpper];
                 } else {
                     userConfig = COUNTRY_CONFIG.DEFAULT; 
                 }
             } else {
-                userConfig = COUNTRY_CONFIG.KE; // Ultimate fallback if completely offline
+                userConfig = COUNTRY_CONFIG.KE;
             }
 
             updateUIWithConfig();
@@ -1229,7 +1293,7 @@
             document.getElementById("detected-currency").textContent = `(${userConfig.currency})`;
             document.getElementById("user-region-name").textContent = userConfig.name;
 
-            const saved = localStorage.getItem("mula_selected_langs");
+            const saved = localStorage.getItem("lipa_selected_langs");
             if (saved) {
                 try { selectedLanguages = JSON.parse(saved); } catch(e) { selectedLanguages = []; }
             }
@@ -1271,7 +1335,7 @@
                 selectedLanguages.push(lang);
             }
             try {
-                localStorage.setItem("mula_selected_langs", JSON.stringify(selectedLanguages));
+                localStorage.setItem("lipa_selected_langs", JSON.stringify(selectedLanguages));
             } catch(e){}
             renderLanguageChips();
         }
@@ -1352,7 +1416,7 @@
                                 <span class="payout-sub">YOU WILL EARN</span>
                                 <span class="payout-val">${formattedPayout}</span>
                             </div>
-                            <a href="https://mulaearn.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-start-lesson">
+                            <a href="https://lipahub.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-start-lesson">
                                 Start Lesson <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         </div>
@@ -1379,17 +1443,15 @@
             }, 1000);
         }
 
-        // LIVE WITHDRAWAL TOAST NOTIFICATIONS (CROSS-COUNTRY, 2 SENTENCES, 30-60 SECONDS INTERVAL)
+        // LIVE WITHDRAWAL TOAST NOTIFICATIONS
         function startToastTicker() {
             const container = document.getElementById("toast-container");
             
             const triggerNotification = () => {
-                // Pick a random country configuration from the available pool across all countries
                 const countryKeys = Object.keys(COUNTRY_CONFIG);
                 const randomCountryKey = countryKeys[Math.floor(Math.random() * countryKeys.length)];
                 const cConfig = COUNTRY_CONFIG[randomCountryKey];
 
-                // Generate random withdrawal amount appropriate for that country's currency scale
                 const baseWithdrawalKsh = Math.floor(800 + Math.random() * (15000 - 800 + 1));
                 const convertedAmt = baseWithdrawalKsh * cConfig.baseMult;
                 
@@ -1412,12 +1474,11 @@
                     <i class="fa-solid fa-circle-check toast-icon"></i>
                     <div class="toast-text-content">
                         <span><strong>${randName}</strong> ${cConfig.flag} withdrew <strong>${formattedWithdrawal}</strong>.</span>
-                        <span style="color: var(--text-muted); font-size: 0.8rem;">From teaching African languages.</span>
+                        <span style="color: var(--text-muted); font-size: 0.78rem;">From teaching African languages.</span>
                     </div>
                 `;
                 container.appendChild(toast);
 
-                // Make the toast disappear smoothly after 4.5 seconds
                 setTimeout(() => {
                     toast.style.opacity = '0';
                     toast.style.transform = 'translateY(15px)';
@@ -1425,12 +1486,10 @@
                     setTimeout(() => toast.remove(), 500);
                 }, 4500);
 
-                // Schedule next notification in a random interval between 30 and 60 seconds (30000ms to 60000ms)
                 const nextInterval = Math.floor(30000 + Math.random() * 30001);
                 setTimeout(triggerNotification, nextInterval);
             };
 
-            // Initial trigger after 30 seconds
             setTimeout(triggerNotification, 30000);
         }
 
@@ -1449,7 +1508,7 @@
                         </div>
                         <p class="explore-desc">${item.desc}</p>
                     </div>
-                    <a href="https://mulaearn.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-teach-sm">Teach This Language</a>
+                    <a href="https://lipahub.com/register.php?ref=Aimo254" target="_blank" rel="noopener" class="btn-teach-sm">Teach This Language</a>
                 `;
                 grid.appendChild(card);
             });
@@ -1483,4 +1542,3 @@
     </script>
 </body>
 </html>
-
